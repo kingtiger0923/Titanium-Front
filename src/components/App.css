@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+  background-color: #900090;
+  min-height: 100vh;
+  padding-top: 2em;
+  font-size: 20px;
+  color: white;
+}
+
+/* Landing */
+.landing {
+  margin-top: 2em;
+}
+
+/* Top Menubar */
+.top-menubar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-menubar .logo img{
+  width: 200px;
+}
