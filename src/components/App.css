@@ -62,8 +62,12 @@
   font-size: 0.8em;
 }
 
+.login-page .error {
+  color: red;
+  font-size: 0.6em;
+  font-weight: normal;
+}
 /* Join Page */
-/* Login Page */
 .join-page {
   padding: 1em;
   border-radius: 1em;
@@ -83,4 +87,10 @@
   margin: auto;
   text-align: left;
   font-size: 0.8em;
+}
+
+.join-page .error {
+  color: red;
+  font-size: 0.6em;
+  font-weight: normal;
 }

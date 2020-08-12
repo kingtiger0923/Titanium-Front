@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { POST } from '../api/api';
+import { POST } from '../../api/api';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -65,14 +65,13 @@ function LoginPage() {
   const onLogin = (e) => {
     e.preventDefault();
     
-    let url = process.env.REACT_APP_API_URL + '/login';
+    let url = process.env.REACT_APP_API_URL + '/admin/login';
     POST(url, {
       email,
       password,
       remember
     }).then(res => {
       if( res.data.code === 'success' ) {
-        localStorage.setItem('token', res.data.token);
         history.push('/dashboard');
       } else {
         setModalShow(true);
@@ -84,7 +83,7 @@ function LoginPage() {
   return (
     <div className="login-page">
       <div className="title">
-        Welcome To Titanium
+        Welcome To Titanium Admin
       </div>
       <div className="login-form">
         <form>
