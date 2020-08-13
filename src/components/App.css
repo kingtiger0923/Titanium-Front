@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #C000C0;
+  background-color: #42389d;
   min-height: 100vh;
   padding-top: 2em;
   font-size: 20px;
@@ -93,4 +93,9 @@
   color: red;
   font-size: 0.6em;
   font-weight: normal;
+}
+
+/* Admin Dashboard */
+.adminDash {
+  margin-top: -2em;
 }

@@ -65,14 +65,14 @@ function LoginPage() {
   const onLogin = (e) => {
     e.preventDefault();
     
-    let url = process.env.REACT_APP_API_URL + '/admin/login';
+    let url = process.env.REACT_APP_API_URL + '/admin-login';
     POST(url, {
       email,
       password,
       remember
     }).then(res => {
       if( res.data.code === 'success' ) {
-        history.push('/dashboard');
+        history.push('/admin/dashboard');
       } else {
         setModalShow(true);
         setModalTitle("Failed");
