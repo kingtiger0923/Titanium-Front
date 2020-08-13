@@ -9,7 +9,7 @@ class SideBar extends React.Component {
           {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}
           <div className="flex flex-col flex-grow bg-indigo-800 pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <img className="h-14 px-4 w-auto" src="./../assets/Logo@2x.png" />
+              <img className="h-14 px-4 w-auto" src="./../assets/Logo@2x.png" alt="Logo" />
             </div>
             <div className="mt-5 flex-1 flex flex-col">
               <nav className="flex-1 px-2 bg-indigo-800">

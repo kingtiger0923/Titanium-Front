@@ -1,6 +1,25 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer);
+const middlewares = [thunk];
+
+let initialState = {
+  adminData: {
+    pending: false,
+    success: false,
+    error: false,
+    data: {}
+  }
+  // },
+  // userData: {
+  //   pending: false,
+  //   success: false,
+  //   error: false,
+  //   data: {}
+  // }
+}
+
+let store = createStore(reducer, initialState, applyMiddleware(...middlewares));
 
 export default store;

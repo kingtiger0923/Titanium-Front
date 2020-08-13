@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import adminData from './adminData';
 
-export default combineReducers({counter});
+export default combineReducers({adminData});

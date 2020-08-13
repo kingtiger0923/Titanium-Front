@@ -1,8 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import AdminSideBar from './components/AdminSideBar';
 // import MdHidden from './components/MdHidden';
+import fetchAdminData from '../../store/fetchAdminData';
+import { getAdminDataPending, getAdminDataSuccess, getAdminDataFailed } from '../../store/reducers/adminData';
 
-class AdminDashboard extends React.Component {
+
+class AdminUsers extends React.Component {
+  
   render() {
     return (
       <div className="h-screen flex overflow-hidden bg-gray-100 adminDash">
@@ -20,9 +27,36 @@ class AdminDashboard extends React.Component {
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <div className="py-4">
-                  <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-                    Admin Users is Coming Soon!
-                  </div>
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -31,6 +65,26 @@ class AdminDashboard extends React.Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    console.log("err");
+    fetchAdminData();
+  }
 }
 
-export default AdminDashboard;
+const mapStateToProps = state => ({
+  error: getAdminDataFailed(state),
+  success: getAdminDataSuccess(state),
+  pending: getAdminDataPending(state)
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAdminData: () => dispatch(fetchAdminData())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminUsers);
