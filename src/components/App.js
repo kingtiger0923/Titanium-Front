@@ -11,6 +11,7 @@ import LoginPage from '../views/LoginPage';
 import AdminLogin from '../views/admin/LoginPage';
 import JoinPage from '../views/Join';
 import UserDashboard from '../views/Dashboard';
+import AdminDashboard from '../views/admin/AdminDashboard';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/join" component={JoinPage} />
         <Route exact path="/dashboard" component={UserDashboard} />
         <Route exact path="/admin/login" component={AdminLogin} />
+        <Route exact path="/admin/dashboard" component={AdminDashboard} />
       </div>
     </div>
   );
