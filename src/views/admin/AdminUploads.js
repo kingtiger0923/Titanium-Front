@@ -38,7 +38,7 @@ class AdminUploads extends React.Component {
 
     formData.append('file', this.state.selectedFile);
 
-    let url = process.env.REACT_APP_API_URL + '/upload';
+    let url = process.env.REACT_APP_API_URL + '/pdfupload';
     axios.post(url, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
