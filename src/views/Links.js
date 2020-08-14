@@ -1,7 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import fetchUserData from '../store/fetchUserData';
 
 class Links extends React.Component {
   render() {
+    if( this.props.success !== true ) {
+      return (
+        <div>
+          Loading
+        </div>
+      )
+    }
     return (
       <div className="h-screen flex overflow-hidden bg-gray-100 adminDash">
         <div className="flex flex-col w-0 flex-1 overflow-hidden">
@@ -23,6 +34,27 @@ class Links extends React.Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    if( this.props.success !== true ) {
+      this.props.fetchUserData();
+    }
+  }
 }
 
-export default Links;
+const mapStateToProps = state => ({
+  error: state.userData.error,
+  success: state.userData.success,
+  pending: state.userData.pending,
+  userData: state.userData.data
+});
+
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchUserData
+}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Links);

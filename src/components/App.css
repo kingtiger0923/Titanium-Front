@@ -126,3 +126,22 @@
 }
 
 /* Admin Dashboard */
+
+
+/* User Pdf Uploads */
+.pdf-list {
+  max-width: 600px;
+  margin: auto;
+}
+
+.pdf-list .pdf-item {
+  padding: 5px 10px;
+  background-color: #e2e2e2;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.pdf-list .pdf-item:hover {
+  background-color: #ececec;
+  font-size: 1.01em;
+}

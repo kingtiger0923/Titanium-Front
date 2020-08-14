@@ -12,12 +12,13 @@ import JoinPage from '../views/Join';
 import UserDashboard from '../views/Dashboard';
 import AdminDashboard from '../views/admin/AdminDashboard';
 import AdminUsers from '../views/admin/AdminUsers';
-import AdminUploads from '../views/admin/AdminUploads';
+import AdminPDF from '../views/admin/AdminPDF';
 import AdminMessages from '../views/admin/AdminMessages';
 import UserMenuBar from '../components/UserMenuBar';
 import PDFs from '../views/Pdfs';
 import Links from '../views/Links';
 import Messages from '../views/Messages';
+import AdminLinks from '../views/admin/AdminLinks';
 
 class App extends React.Component {
   render() {
@@ -40,7 +41,8 @@ class App extends React.Component {
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
           <Route exact path="/admin/users" component={AdminUsers} />
-          <Route exact path="/admin/uploads" component={AdminUploads} />
+          <Route exact path="/admin/pdfs" component={AdminPDF} />
+          <Route exact path="/admin/links" component={AdminLinks} />
           <Route exact path="/admin/messages" component={AdminMessages} />
         </div>
       </div>

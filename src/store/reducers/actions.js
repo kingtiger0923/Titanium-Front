@@ -28,22 +28,22 @@ export function fetchAdminDataFailed(error) {
   };
 }
 
-// function fetchUserDataPending() {
-//   return {
-//     type: FETCH_USERDATA_PENDING
-//   };
-// }
+export function fetchUserDataPending() {
+  return {
+    type: FETCH_USERDATA_PENDING
+  };
+}
 
-// function fetchUserDataSuccess(data) {
-//   return {
-//     type: FETCH_USERDATA_SUCCESS,
-//     userData: data
-//   };
-// }
+export function fetchUserDataSuccess(data) {
+  return {
+    type: FETCH_USERDATA_SUCCESS,
+    payload: data
+  };
+}
 
-// function fetchUserDataFailed(error) {
-//   return {
-//     type: FETCH_USERDATA_FAILED,
-//     error: error
-//   };
-// }
+export function fetchUserDataFailed(error) {
+  return {
+    type: FETCH_USERDATA_FAILED,
+    payload: error
+  };
+}

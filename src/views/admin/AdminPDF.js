@@ -9,7 +9,7 @@ import AdminSideBar from './components/AdminSideBar';
 import fetchAdminData from '../../store/fetchAdminData';
 import axios from 'axios';
 
-class AdminUploads extends React.Component {
+class AdminPDF extends React.Component {
   constructor(props) {
     super(props);
 
@@ -82,6 +82,7 @@ class AdminUploads extends React.Component {
               className="form-control" 
               placeholder="Enter email" 
               onChange={this.onFileChange}
+              accept=".pdf"
             />
           </div>
           <button 
@@ -106,12 +107,12 @@ class AdminUploads extends React.Component {
     }
 
     const userListData = [];
-    for( const [index, val] of this.props.adminData.uploads.entries() ) {
+    for( const [index, val] of this.props.adminData.pdfs.entries() ) {
       userListData.push(
         <tr key={index}>
           <th scope='row'>{index}</th>
           <td>{val.fileName}</td>
-          <td>{val.fileType}</td>
+          <td>{val.filePath}</td>
           <td>{val.date}</td>
           <td>{val.title}</td>
           <td>{val.author}</td>
@@ -121,13 +122,8 @@ class AdminUploads extends React.Component {
 
     return (
       <div className="h-screen flex overflow-hidden bg-gray-100 adminDash">
-        {/* <MdHidden /> */}
         <AdminSideBar />
         <div className="flex flex-col w-0 flex-1 overflow-hidden">
-          {/* <div className="relative z-10 flex-shrink-0 flex h-16 bg-purple shadow">
-            Admin Dashboard
-          </div> */}
-
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none pt-5 text-black" tabIndex="0">
             <div className="pt-2 pb-6 md:py-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
@@ -141,7 +137,7 @@ class AdminUploads extends React.Component {
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">File Name</th>
-                        <th scope="col">Extension</th>
+                        <th scope="col">Path</th>
                         <th scope="col">Date</th>
                         <th scope="col">Title</th>
                         <th scope="col">Author</th>
@@ -180,4 +176,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AdminUploads);
+)(AdminPDF);
