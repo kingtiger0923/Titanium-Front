@@ -4,19 +4,17 @@ export default function adminData(state = {}, action) {
   let newState = {...state};
   switch(action.type) {
     case FETCH_ADMINDATA_PENDING:
-      newState.adminData.pending = true;
+      newState.pending = true;
       return newState;
     case FETCH_ADMINDATA_SUCCESS:
-      newState.adminData.data = action.payload;
+      newState.success = true;
+      newState.data = action.payload;
       return newState;
     case FETCH_ADMINDATA_FAILED:
-      newState.adminData.data = action.payload;
+      newState.data = action.payload;
+      newState.error = true;
       return newState;
     default:
       return state;
   }
 }
-
-export const getAdminDataPending = state => state.adminData.pending;
-export const getAdminDataSuccess = state => state.adminData.success;
-export const getAdminDataFailed = state => state.adminData.error;

@@ -5,12 +5,36 @@ import { bindActionCreators } from 'redux';
 import AdminSideBar from './components/AdminSideBar';
 // import MdHidden from './components/MdHidden';
 import fetchAdminData from '../../store/fetchAdminData';
-import { getAdminDataPending, getAdminDataSuccess, getAdminDataFailed } from '../../store/reducers/adminData';
+import { Redirect } from 'react-router-dom';
 
 
 class AdminUsers extends React.Component {
-  
   render() {
+    if( this.props.error ) {
+      return (<Redirect to='/login' />);
+    }
+    if( this.props.success !== true ) {
+      return (
+        <div>
+          Loading
+        </div>
+      )
+    }
+
+    const userListData = [];
+    for( const [index, val] of this.props.adminData.users.entries() ) {
+      userListData.push(
+        <tr key={index}>
+          <th scope='row'>{index}</th>
+          <td>{val.firstName}</td>
+          <td>{val.lastName}</td>
+          <td>{val.email}</td>
+          <td>{val.admin?'YES':'NO'}</td>
+          <td>{val.active?'YES':'NO'}</td>
+        </tr>
+      );
+    }
+
     return (
       <div className="h-screen flex overflow-hidden bg-gray-100 adminDash">
         {/* <MdHidden /> */}
@@ -30,31 +54,16 @@ class AdminUsers extends React.Component {
                   <table className="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">No</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Admin</th>
+                        <th scope="col">Active</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
+                      {userListData}
                     </tbody>
                   </table>
                 </div>
@@ -67,22 +76,22 @@ class AdminUsers extends React.Component {
   }
 
   componentDidMount() {
-    console.log("err");
-    fetchAdminData();
+    if( this.props.success !== true ) {
+      this.props.fetchAdminData();
+    }
   }
 }
 
 const mapStateToProps = state => ({
-  error: getAdminDataFailed(state),
-  success: getAdminDataSuccess(state),
-  pending: getAdminDataPending(state)
+  error: state.adminData.error,
+  success: state.adminData.success,
+  pending: state.adminData.pending,
+  adminData: state.adminData.data
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAdminData: () => dispatch(fetchAdminData())
-  };
-};
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchAdminData
+}, dispatch);
 
 export default connect(
   mapStateToProps,

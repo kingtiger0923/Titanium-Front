@@ -6,14 +6,16 @@ function fetchAdminData() {
     dispatch(fetchAdminDataPending());
     const url = process.env.REACT_APP_API_URL + '/adminData';
     const token = localStorage.token;
-    console.log(token);
     POST(url, {
       token
     }).then(res => {
-      console.log(res);
-      dispatch(fetchAdminDataSuccess());
+      if( res.data.code === 'Failed' ) {
+        dispatch(fetchAdminDataFailed(res.data.message));
+      } else {
+        dispatch(fetchAdminDataSuccess(res.data));
+      }
     }).catch(err => {
-      dispatch(fetchAdminDataFailed());
+      dispatch(fetchAdminDataFailed(err));
     })
   };
 }

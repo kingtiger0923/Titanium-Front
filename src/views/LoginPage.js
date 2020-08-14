@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { POST } from '../api/api';
 import Modal from 'react-bootstrap/Modal';
@@ -17,6 +17,17 @@ function LoginPage() {
     email: '',
     password: ''
   });
+
+  useEffect(() => {
+    console.log(localStorage.savedUserEmail);
+    if( localStorage.savedUserEmail ) {
+      setEmail(localStorage.savedUserEmail);
+      setPassword(localStorage.savedUserPass);
+      setRemember(true);
+      setError({email: 'T', password: 'T'});
+    }
+  }, []);
+
   const ModalClose = () => {
     setModalShow(false);
   };
@@ -73,7 +84,15 @@ function LoginPage() {
     }).then(res => {
       if( res.data.code === 'success' ) {
         localStorage.setItem('token', res.data.token);
-        history.push('/dashboard');
+        if( !res.data.admin ) {
+          history.push('/dashboard');
+        } else {
+          history.push('/admin/dashboard');
+        }
+        if( remember ) {
+          localStorage.setItem('savedUserEmail', email);
+          localStorage.setItem('savedUserPass', password);
+        }
       } else {
         setModalShow(true);
         setModalTitle("Failed");

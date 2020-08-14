@@ -2,7 +2,7 @@ import React from 'react';
 // import SideBar from '../components/SideBar';
 // import MdHidden from './components/MdHidden';
 
-class Dashboard extends React.Component {
+class Messages extends React.Component {
   render() {
     return (
       <div className="h-screen flex overflow-hidden bg-gray-100 adminDash">
@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <div className="py-4">
                   <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-                    DashBoard is Coming Soon!
+                    Messages Page is Coming Soon!
                   </div>
                 </div>
               </div>
@@ -33,4 +33,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default Messages;
