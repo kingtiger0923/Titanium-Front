@@ -7,11 +7,15 @@ import AdminSideBar from './components/AdminSideBar';
 
 
 import fetchAdminData from '../../store/fetchAdminData';
-import axios from 'axios';
+import { POST } from '../../api/api';
 
 class AdminLinks extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onLinkNameChange = this.onLinkNameChange.bind(this);
+    this.onLinkPathChange = this.onLinkPathChange.bind(this);
+    this.handleAddLink = this.handleAddLink.bind(this);
 
     this.state = {
       linkName: '',
@@ -21,6 +25,27 @@ class AdminLinks extends React.Component {
 
   onLinkNameChange(e) {
     this.setState({ linkName: e.target.value });
+  }
+
+  onLinkPathChange(e) {
+    this.setState({ linkPath: e.target.value });
+  }
+
+  handleAddLink(e) {
+    e.preventDefault();
+    let linkName = this.state.linkName;
+    let linkPath = this.state.linkPath;
+    let url = process.env.REACT_APP_API_URL + '/addlinks';
+
+    POST(url, {
+      linkName,
+      linkPath
+    }).then(function(res) {
+      console.log(res);
+      if( res.data === 'success' ) {
+        this.props.fetchAdminData();
+      }
+    }.bind(this));
   }
 
   render() {
@@ -34,11 +59,13 @@ class AdminLinks extends React.Component {
 
     const linkListData = [];
     for( const [index, val] of this.props.adminData.links.entries() ) {
+      let trimlink = val.link;
+      if( trimlink.length > 50 ) trimlink = trimlink.substr(0, 50) + '...';
       linkListData.push(
         <tr key={index}>
           <th scope='row'>{index}</th>
           <td>{val.name}</td>
-          <td><a href={val.link}>{val.link}</a></td>
+          <td><a href={val.link} target="blank">{trimlink}</a></td>
         </tr>
       );
     }
@@ -54,23 +81,35 @@ class AdminLinks extends React.Component {
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <div className="py-4">
-                  <form>
+                  <form className="text-left">
                     <h3 className="text-center p-4">Add More Links</h3>
                     <div className="form-group">
+                      <label htmlFor="linkname">Link Name</label>
                       <input 
-                        type="name" 
+                        type="text"
+                        id="linkname"
                         className="form-control" 
                         placeholder="Enter Link Name" 
                         onChange={this.onLinkNameChange}
-                        accept=".pdf"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="linkpath">Link Path</label>
+                      <input 
+                        type="text"
+                        id="linkpath"
+                        className="form-control" 
+                        placeholder="Enter Link Path" 
+                        onChange={this.onLinkPathChange}
                       />
                     </div>
                     <button 
                       type="submit" 
                       className="btn btn-primary btn-block"
-                      onClick={this.handleFileUpload}
+                      onClick={this.handleAddLink}
+                      disabled={this.state.linkName === '' || this.state.linkPath === ''}
                     >
-                      Submit
+                      Add
                     </button>
                   </form>
                   <table className="table table-striped">
