@@ -8,8 +8,8 @@ class Links extends React.Component {
   render() {
     if( this.props.success !== true ) {
       return (
-        <div>
-          Loading
+        <div className="lds-grid">
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
       )
     }

@@ -12,8 +12,8 @@ function Logo() {
 function LoginAction() {
   return (
     <div className="action">
-      <Link to="/login">Login</Link>
-      <Link to="/join">Sign Up</Link>
+      <Link to="/login" className="login">Login</Link>
+      <Link to="/join" className="logout">Sign Up</Link>
     </div>
   );
 }

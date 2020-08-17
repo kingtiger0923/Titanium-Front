@@ -4,6 +4,8 @@
   min-height: 100vh;
   font-size: 20px;
   color: white;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Landing */
@@ -19,25 +21,43 @@
 }
 
 .top-menubar .logo {
-  margin-left: 1em;
+  margin-left: 4em;
 }
 
 .top-menubar .logo img{
   width: 200px;
 }
 
-.top-menubar .action a {
+.top-menubar .action a.login {
   font-size: 1em;
   font-weight: bold;
-  padding: 0.5em;
-  margin-right: 0.5em;
+  padding: 0.5em 2em;
+  margin-right: 1.5em;
   text-decoration: none;
   color: white;
+  border: 1px solid #53555a;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
-.top-menubar .action a:hover {
-  /* background-color: rgba(0, 0, 0, 0.3); */
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+.top-menubar .action a.logout {
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0.5em 2em;
+  margin-right: 1.5em;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #7d23fc;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.top-menubar .action a.login:hover {
+  background-color: #53555a;
+}
+
+.top-menubar .action a.logout:hover {
+  background-color: #7d23fc;
 }
 
 .user-menu {
@@ -45,6 +65,7 @@
   margin-top: 0;
   background-color: #42389d;
   text-align: left;
+  padding: 1em;
 }
 
 .user-menu img {
@@ -63,11 +84,20 @@
 
 .user-menu a.logout {
   float: right;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1.5em;
+  padding: 0.5em 2em;
   margin-right: 1.5em;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #53555a;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .user-menu a.logout:hover {
-  text-decoration: none;
+  background-color: #53555a;
 }
 
 /* Login Page */
@@ -78,6 +108,7 @@
   max-width: 550px;
   margin: auto;
   margin-top: 4em;
+  animation: lgform 1s;
 }
 
 .login-page .title {
@@ -90,6 +121,17 @@
   margin: auto;
   text-align: left;
   font-size: 0.8em;
+}
+
+@keyframes lgform {
+  0% {
+    opacity: 0;
+    margin-top: 6em;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 4em;
+  }
 }
 
 .login-page .error {
@@ -105,6 +147,7 @@
   max-width: 550px;
   margin: auto;
   margin-top: 4em;
+  animation: lgform 1s;
 }
 
 .join-page .title {
@@ -144,4 +187,74 @@
 .pdf-list .pdf-item:hover {
   background-color: #ececec;
   font-size: 1.01em;
+}
+
+
+/* Loading */
+.lds-grid {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-grid div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

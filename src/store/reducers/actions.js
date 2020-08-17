@@ -8,6 +8,15 @@ export const FETCH_USERDATA_PENDING = 'FETCH_USERDATA_PENDING';
 export const FETCH_USERDATA_SUCCESS = 'FETCH_USERDATA_SUCCESS';
 export const FETCH_USERDATA_FAILED  = 'FETCH_USERDATA_FAILED';
 
+export const SET_USER_PERMISSION = 'SET_USER_PERMISSION';
+
+export function setUserPermission(idx) {
+  return {
+    type: SET_USER_PERMISSION,
+    payload: idx
+  };
+}
+
 export function fetchAdminDataPending() {
   return {
     type: FETCH_ADMINDATA_PENDING

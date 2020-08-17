@@ -1,26 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Switch from 'react-toggle-switch';
+import "./../../../node_modules/react-toggle-switch/dist/css/switch.min.css" 
 
 import AdminSideBar from './components/AdminSideBar';
 // import MdHidden from './components/MdHidden';
 import fetchAdminData from '../../store/fetchAdminData';
+import setAdminUserPermission from "../../store/setAdminUserPermission";
 import { Redirect } from 'react-router-dom';
 
 
 class AdminUsers extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.userPermissionChange = this.userPermissionChange.bind(this);
+  }
+
+  userPermissionChange(idx) {
+    return function() {
+      this.props.setAdminUserPermission(idx, this.props.adminData.users[idx]._id);
+    }.bind(this);
+  }
+
   render() {
     if( this.props.error ) {
       return (<Redirect to='/login' />);
     }
     if( this.props.success !== true ) {
       return (
-        <div>
-          Loading
+        <div className="lds-grid">
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
       )
     }
-
+    
     const userListData = [];
     for( const [index, val] of this.props.adminData.users.entries() ) {
       userListData.push(
@@ -30,7 +46,7 @@ class AdminUsers extends React.Component {
           <td>{val.lastName}</td>
           <td>{val.email}</td>
           <td>{val.admin?'YES':'NO'}</td>
-          <td>{val.active?'YES':'NO'}</td>
+          <td><Switch onClick={this.userPermissionChange(index)} on={val.active}></Switch></td>
         </tr>
       );
     }
@@ -90,7 +106,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchAdminData
+  fetchAdminData,
+  setAdminUserPermission
 }, dispatch);
 
 export default connect(
