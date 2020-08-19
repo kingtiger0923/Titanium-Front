@@ -19,6 +19,7 @@ import PDFs from '../views/Pdfs';
 import Links from '../views/Links';
 import Messages from '../views/Messages';
 import AdminLinks from '../views/admin/AdminLinks';
+import PdfDetail from '../views/PdfDetail';
 
 class App extends React.Component {
   render() {
@@ -29,6 +30,7 @@ class App extends React.Component {
         <Route exact path="/join" component={TopMenuBar} />
         <Route exact path="/dashboard" component={UserMenuBar} />
         <Route exact path="/pdfs" component={UserMenuBar} />
+        <Route path="/pdfs/:name" component={UserMenuBar} />
         <Route exact path="/links" component={UserMenuBar} />
         <Route exact path="/messages" component={UserMenuBar} />
         <div>
@@ -37,6 +39,7 @@ class App extends React.Component {
           <Route exact path="/join" component={JoinPage} />
           <Route exact path="/dashboard" component={UserDashboard} />
           <Route exact path="/pdfs" component={PDFs} />
+          <Route path="/pdfs/:name" render={({match}) => <PdfDetail match={match} />} />
           <Route exact path="/links" component={Links} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/admin/dashboard" component={AdminDashboard} />

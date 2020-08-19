@@ -19,11 +19,12 @@ class Links extends React.Component {
       let trimlink = val.link;
       if( trimlink.length > 50 ) trimlink = trimlink.substr(0, 50) + '...';
       linkListData.push(
-        <tr key={index}>
-          <th scope='row'>{index}</th>
-          <td>{val.name}</td>
-          <td><a href={val.link} target="blank">{trimlink}</a></td>
-        </tr>
+        <div className="col-md-3 col-lg-3 col-sm-6 col-xs-12" key={index}>
+          <div className="link-item">
+            <div className="name">{val.name}</div>
+            <div className="link"><a href={val.link}>Visit</a></div>
+          </div>
+        </div>
       );
     }
 
@@ -33,22 +34,12 @@ class Links extends React.Component {
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none pt-5 text-black" tabIndex="0">
             <div className="pt-2 pb-6 md:py-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Links</h1>
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <div className="py-4">
-                  <table className="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Link Name</th>
-                        <th scope="col">Link Path</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {linkListData}
-                    </tbody>
-                  </table>
+                  <div className="row">
+                    {linkListData}
+                  </div>
                 </div>
               </div>
             </div>

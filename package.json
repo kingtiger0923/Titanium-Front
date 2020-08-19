@@ -19,6 +19,7 @@
     "react-scripts": "3.4.1",
     "react-switch": "^5.0.1",
     "react-toggle-switch": "^3.0.4",
+    "reactjs-pdf-reader": "^1.0.12",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },

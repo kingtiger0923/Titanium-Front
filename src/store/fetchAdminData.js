@@ -1,5 +1,5 @@
 import { POST } from '../api/api';
-import { fetchAdminDataFailed, fetchAdminDataPending, fetchAdminDataSuccess } from './reducers/actions';
+import { fetchAdminDataFailed, fetchAdminDataPending, fetchAdminDataSuccess, removeOneFile } from './reducers/actions';
 
 function fetchAdminData() {
   return dispatch => {
@@ -18,6 +18,24 @@ function fetchAdminData() {
       dispatch(fetchAdminDataFailed(err));
     })
   };
+}
+
+export function fetchRemovePDF(id) {
+  return dispatch => {
+    
+    const url = process.env.REACT_APP_API_URL + '/removepdf';
+    const token = localStorage.token;
+    POST(url, {
+      token,
+      id
+    }).then(res => {
+      if( res.data.code === 'Failed' ) {
+      } else {
+        dispatch(removeOneFile(id));
+      }
+    }).catch(err => {
+    })
+  }
 }
 
 export default fetchAdminData;
