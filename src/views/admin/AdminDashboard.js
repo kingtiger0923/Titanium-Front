@@ -5,7 +5,7 @@ import AdminSideBar from './components/AdminSideBar';
 class AdminDashboard extends React.Component {
   render() {
     return (
-      <div className="h-screen flex overflow-hidden bg-gray-100 adminDash">
+      <div className="flex overflow-hidden bg-gray-100 adminDash">
         {/* <MdHidden /> */}
         <AdminSideBar />
         <div className="flex flex-col w-0 flex-1 overflow-hidden">

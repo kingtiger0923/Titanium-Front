@@ -29,7 +29,12 @@ class AdminSideBar extends React.Component {
     const defClass = 'group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150'
     
     return (
+    <div>
       <div className="hidden md:flex md:flex-shrink-0">
+        <div className="flex flex-col w-64">
+        </div>
+      </div>
+      <div className="hidden md:flex md:flex-shrink-0 admin_sidebar">
         <div className="flex flex-col w-64">
           {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}
           <div className="flex flex-col flex-grow bg-indigo-800 pt-5 pb-4 overflow-y-auto">
@@ -79,6 +84,7 @@ class AdminSideBar extends React.Component {
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }

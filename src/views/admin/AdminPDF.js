@@ -112,6 +112,8 @@ class AdminPDF extends React.Component {
                   <option value="Branding Guidelines" selected={this.state.pdfType === 'Branding Guidelines' ? 'selected' : ''}>Branding Guidelines</option>
                   <option value="Contests" selected={this.state.pdfType === 'Contests' ? 'selected' : ''}>Contests</option>
                   <option value="Implementation" selected={this.state.pdfType === 'Implementation' ? 'selected' : ''}>Implementation</option>
+                  <option value="HelpDesk" selected={this.state.pdfType === 'HelpDesk' ? 'selected' : ''}>HelpDesk</option>
+                  <option value="FAQ" selected={this.state.pdfType === 'FAQ' ? 'selected' : ''}>FAQ</option>
                 </select>
               </label>
             </div>
@@ -153,7 +155,7 @@ class AdminPDF extends React.Component {
     }
 
     return (
-      <div className="h-screen flex overflow-hidden bg-gray-100 adminDash">
+      <div className="flex overflow-hidden bg-gray-100 adminDash">
         <AdminSideBar />
         <div className="flex flex-col w-0 flex-1 overflow-hidden">
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none pt-5 text-black" tabIndex="0">
