@@ -85,7 +85,7 @@ function LoginPage() {
       if( res.data.code === 'success' ) {
         localStorage.setItem('token', res.data.token);
         if( !res.data.admin ) {
-          history.push('/dashboard');
+          history.push('/pdfs');
         } else {
           history.push('/admin/dashboard');
         }

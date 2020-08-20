@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import fetchUserData from '../store/fetchUserData';
 import { Link } from 'react-router-dom';
 
-class PDFs extends React.Component {
+class PdfGroup extends React.Component {
   render() {
     if( this.props.success !== true ) {
       return (
@@ -14,23 +14,17 @@ class PDFs extends React.Component {
         </div>
       )
     }
-
-    const pdfListData = {"Ordering":0, "Sales Process":0, "Products":0,
-    "HR & Benefits": 0, "Branding Guidelines": 0, "Contests": 0, "Implementation": 0,
-    "HelpDesk": 0, "FAQ": 0};
+    let group = this.props.match.params.group;
+    const pdfListData = [];
     for( const [index, val] of this.props.userData.pdfs.entries() ) {
-      pdfListData[val.group] ++;
-    }
-
-    const pdfGroupData = [];
-    for( let i = 0; i < Object.keys(pdfListData).length; i ++ ) {
-      let key = Object.keys(pdfListData)[i];
-      let val = pdfListData[key];
-      pdfGroupData.push(
-        <div className="col-md-3 col-lg-3 col-sm-6 col-xs-12" key={key}>
+      if( val.group !== group ) continue;
+      let trimName = val.fileName;
+      if( trimName.length > 20 ) trimName = trimName.substr(0, 20) + '...';
+      pdfListData.push(
+        <div className="col-md-3 col-lg-3 col-sm-6 col-xs-12" key={index}>
           <div className="pdf-item">
-            <div className="name"><Link to={"/pdfs/" + key}>{key}</Link></div>
-            <div className="pdf"><Link to={"/pdfs/" + key}>{val} Documents</Link></div>
+            <div className="name">{val.group}</div>
+            <div className="pdf"><Link to={"/pdfs/" + val.group + "/" + val.group + '-' + val.fileName}>{trimName}</Link></div>
           </div>
         </div>
       );
@@ -42,12 +36,12 @@ class PDFs extends React.Component {
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none pt-5 text-black" tabIndex="0">
             <div className="pt-2 pb-6 md:py-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <h1>Documents Group by Type</h1>
+                <h1>{this.props.match.params.group} Documents</h1>
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <div className="py-4">
                   <div className="row">
-                    {pdfGroupData}
+                    {pdfListData}
                   </div>
                 </div>
               </div>
@@ -80,4 +74,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PDFs);
+)(PdfGroup);

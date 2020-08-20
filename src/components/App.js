@@ -20,6 +20,9 @@ import Links from '../views/Links';
 import Messages from '../views/Messages';
 import AdminLinks from '../views/admin/AdminLinks';
 import PdfDetail from '../views/PdfDetail';
+import PdfGroup from '../views/PdfGroup';
+import Inventory from '../views/Inventory';
+import AdminInventory from '../views/admin/AdminInventory';
 
 class App extends React.Component {
   render() {
@@ -30,8 +33,9 @@ class App extends React.Component {
         <Route exact path="/join" component={TopMenuBar} />
         <Route exact path="/dashboard" component={UserMenuBar} />
         <Route exact path="/pdfs" component={UserMenuBar} />
-        <Route path="/pdfs/:name" component={UserMenuBar} />
+        <Route path="/pdfs/:group" component={UserMenuBar} />
         <Route exact path="/links" component={UserMenuBar} />
+        <Route exact path="/inventory" component={UserMenuBar} />
         <Route exact path="/messages" component={UserMenuBar} />
         <div>
           <Route exact path="/" component={Landing} />
@@ -39,13 +43,16 @@ class App extends React.Component {
           <Route exact path="/join" component={JoinPage} />
           <Route exact path="/dashboard" component={UserDashboard} />
           <Route exact path="/pdfs" component={PDFs} />
-          <Route path="/pdfs/:name" render={({match}) => <PdfDetail match={match} />} />
+          <Route exact path="/pdfs/:group" render={({match}) => <PdfGroup match={match} />} />
+          <Route path="/pdfs/:group/:name" render={({match}) => <PdfDetail match={match} />} />
           <Route exact path="/links" component={Links} />
+          <Route exact path="/inventory" component={Inventory} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
           <Route exact path="/admin/users" component={AdminUsers} />
           <Route exact path="/admin/pdfs" component={AdminPDF} />
           <Route exact path="/admin/links" component={AdminLinks} />
+          <Route exact path="/admin/inventory" component={AdminInventory} />
           <Route exact path="/admin/messages" component={AdminMessages} />
         </div>
       </div>

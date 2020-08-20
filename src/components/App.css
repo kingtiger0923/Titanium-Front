@@ -89,8 +89,12 @@
   transition: all 0.3s ease-in-out;
 }
 
+.user-menu a.selected {
+  color: rgb(10, 10, 10);
+}
+
 .user-menu a:hover {
-  background-color: rgba(0,0,0,0.5);
+  color: rgb(10, 10, 10);
 }
 
 .user-menu a.logout {
@@ -366,6 +370,20 @@ td.btn-remove {
   padding: 5px 15px 8px 15px;
 }
 
+.inv-item {
+  margin: 1em;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+}
+
+.inv-item img{
+  border: 2px solid #42389d;
+}
+
+.inv-item:hover {
+  padding: 5px;
+}
+
 
 .pdf-item {
   background-color: #42389d;
@@ -393,6 +411,7 @@ td.btn-remove {
 
 .pdf-item a {
   font-weight: bold;
+  color: white;
 }
 
 .pdf-item:hover a {
@@ -416,4 +435,15 @@ td.btn-remove {
 
 .overflow-hidden {
   min-height: 95vh;
+}
+
+.inventory-img {
+  width: 10em;
+  margin: auto;
+}
+
+.iv-img-small {
+  max-width: 100px;
+  max-height: 100px;
+  margin: auto;
 }

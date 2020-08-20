@@ -10,6 +10,7 @@ export const FETCH_USERDATA_FAILED  = 'FETCH_USERDATA_FAILED';
 
 export const SET_USER_PERMISSION = 'SET_USER_PERMISSION';
 export const REMOVE_PDF_FILE = 'REMOVE_PDF_FILE';
+export const CHANGE_INVENTORY_COUNT = 'CHANGE_INVENTORY_COUNT';
 
 export function setUserPermission(idx) {
   return {
@@ -22,6 +23,16 @@ export function removeOneFile(id) {
   return {
     type: REMOVE_PDF_FILE,
     payload: id
+  }
+}
+
+export function changeInventory(id, val) {
+  return {
+    type: CHANGE_INVENTORY_COUNT,
+    payload: {
+      id,
+      val
+    }
   }
 }
 
