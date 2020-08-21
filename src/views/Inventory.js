@@ -14,9 +14,9 @@ class Links extends React.Component {
       )
     }
 
-    const linkListData = [];
+    const InventoryListData = [];
     for( const [index, val] of this.props.userData.inventory.entries() ) {
-      linkListData.push(
+      InventoryListData.push(
         <div className="col-md-3 col-lg-3 col-sm-6 col-xs-12" key={index}>
           <div className="inv-item">
             <div className="photo"><img src={process.env.REACT_APP_API_URL + '/' + val.image} alt={val.name}/></div>
@@ -36,7 +36,7 @@ class Links extends React.Component {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <div className="py-4">
                   <div className="row">
-                    {linkListData}
+                    {InventoryListData}
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@ class Links extends React.Component {
 
   componentDidMount() {
     if( this.props.success !== true ) {
-      this.props.fetchUserData();
+      this.props.InventoryListData();
     }
   }
 }

@@ -106,7 +106,7 @@ class AdminPDF extends React.Component {
               <label htmlFor="pdf-type" className="custom-select">
                 <select name="pdf-type" id="pdf-type" onChange={this.onFileTypeChange}>
                   <option value="Ordering" selected={this.state.pdfType === 'Ordering' ? 'selected' : ''}>Ordering</option>
-                  <option value="Sales Process" selected={this.state.pdfType === 'Sales Process' ? 'selected' : ''}>Sales Process</option>
+                  <option value="Sales Force" selected={this.state.pdfType === 'Sales Force' ? 'selected' : ''}>Sales Process</option>
                   <option value="Products" selected={this.state.pdfType === 'Products' ? 'selected' : ''}>Products</option>
                   <option value="HR &amp; Benefits" selected={this.state.pdfType === 'HR & Benefits' ? 'selected' : ''}>HR &amp; Benefits</option>
                   <option value="Branding Guidelines" selected={this.state.pdfType === 'Branding Guidelines' ? 'selected' : ''}>Branding Guidelines</option>

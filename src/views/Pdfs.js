@@ -15,7 +15,7 @@ class PDFs extends React.Component {
       )
     }
 
-    const pdfListData = {"Ordering":0, "Sales Process":0, "Products":0,
+    const pdfListData = {"Ordering":0, "Sales Force":0, "Products":0,
     "HR & Benefits": 0, "Branding Guidelines": 0, "Contests": 0, "Implementation": 0,
     "HelpDesk": 0, "FAQ": 0};
     for( const [index, val] of this.props.userData.pdfs.entries() ) {
