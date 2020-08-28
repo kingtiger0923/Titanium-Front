@@ -11,6 +11,54 @@ export const FETCH_USERDATA_FAILED  = 'FETCH_USERDATA_FAILED';
 export const SET_USER_PERMISSION = 'SET_USER_PERMISSION';
 export const REMOVE_PDF_FILE = 'REMOVE_PDF_FILE';
 export const CHANGE_INVENTORY_COUNT = 'CHANGE_INVENTORY_COUNT';
+export const CHANGE_INVENTORY_PERMISSION = 'CHANGE_INVENTORY_PERMISSION';
+export const CHANGE_MESSAGE_PERMISSION = 'CHANGE_MESSAGE_PERMISSION';
+export const CHANGE_INVENTORY_NAME = 'CHANGE_INVENTORY_NAME';
+export const DELETE_INVENTORY = 'DELETE_INVENTORY';
+export const NEW_MESSAGE = 'NEW_MESSAGE';
+export const READ_MESSAGE = 'READ_MESSAGE';
+
+export function newMessage() {
+  return {
+    type: NEW_MESSAGE,
+    payload: ''
+  }
+}
+
+export function ReadMessage() {
+  return {
+    type: READ_MESSAGE,
+    payload: ''
+  }
+}
+
+export function deleteInventory(id) {
+  return {
+    type: DELETE_INVENTORY,
+    payload: id
+  }
+}
+
+export function changeInventoryName(id, val) {
+  return {
+    type: CHANGE_INVENTORY_NAME,
+    payload: {id, val}
+  };
+}
+
+export function setMessagePermission(idx) {
+  return {
+    type: CHANGE_MESSAGE_PERMISSION,
+    payload: idx
+  }
+}
+
+export function setInventoryPermission(idx) {
+  return {
+    type: CHANGE_INVENTORY_PERMISSION,
+    payload: idx
+  };
+}
 
 export function setUserPermission(idx) {
   return {

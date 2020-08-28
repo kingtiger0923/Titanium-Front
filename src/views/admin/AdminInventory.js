@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 import fetchAdminData from '../../store/fetchAdminData';
-import { fetchChangeInventory } from '../../store/fetchAdminData';
+import { fetchChangeInventory, fetchDeleteInventory, fetchChangeInventoryName } from '../../store/fetchAdminData';
 
 class AdminLinks extends React.Component {
   constructor(props) {
@@ -153,9 +153,17 @@ class AdminLinks extends React.Component {
       inventoryListData.push(
         <tr key={index}>
           <th scope='row'><img className="iv-img-small" src={process.env.REACT_APP_API_URL + '/' + val.image} alt={val.name}/></th>
-          <td>{val.name}</td>
+          <td><input className="form-control" type="text" value={val.name} 
+          onChange={(e) => this.props.fetchChangeInventoryName(val._id, e.target.value)}/></td>
           <td><input className="form-control" type="number" value={val.count} 
           onChange={(e) => this.props.fetchChangeInventory(val._id, e.target.value)}/></td>
+          <td><button className="btn btn-sm btn-noback" 
+            type="button" data-toggle="tooltip" data-placement="top" 
+            title="" data-original-title="Delete"
+            onClick={() => this.props.fetchDeleteInventory(val._id)}>
+              <i className="fa fa-trash"></i>
+            </button>
+          </td>
         </tr>
       );
     }
@@ -177,6 +185,7 @@ class AdminLinks extends React.Component {
                         <th scope="col">Image</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Product Count</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -207,7 +216,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchAdminData,
-  fetchChangeInventory
+  fetchChangeInventory,
+  fetchDeleteInventory,
+  fetchChangeInventoryName
 }, dispatch);
 
 export default connect(

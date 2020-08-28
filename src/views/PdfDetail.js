@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import fetchUserData from '../store/fetchUserData';
+import socketIOClient from 'socket.io-client';
+import { fetchNewMessage } from '../store/fetchAdminData';
 import { PDFReader } from 'reactjs-pdf-reader';
 
 class Links extends React.Component {
@@ -15,7 +17,8 @@ class Links extends React.Component {
 
     this.state = {
       currentPage: 1,
-      totalPages: -1
+      totalPages: -1,
+      socket: null
     };
   }
 
@@ -76,6 +79,23 @@ class Links extends React.Component {
     if( this.props.success !== true ) {
       this.props.fetchUserData();
     }
+    let self = this;
+    let interval = setInterval(function() {
+      if( self.props.success !== true ) return;
+      clearInterval(interval);
+      if( !self.props.userData.curUser.p_message ) return ;
+      self.state.socket = socketIOClient(process.env.REACT_APP_API_URL);
+      self.state.socket.on('connect', function() {
+        self.state.socket.on( 'message', function(msg) {
+          self.props.fetchNewMessage();
+        });
+        
+      })
+    }, 500);
+  }
+  componentWillUnmount(){
+    if( this.state.socket )
+      this.state.socket.close();
   }
 }
 
@@ -88,7 +108,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchUserData
+  fetchUserData,
+  fetchNewMessage
 }, dispatch);
 
 export default connect(

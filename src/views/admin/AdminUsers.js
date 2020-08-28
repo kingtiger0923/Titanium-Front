@@ -8,6 +8,8 @@ import AdminSideBar from './components/AdminSideBar';
 // import MdHidden from './components/MdHidden';
 import fetchAdminData from '../../store/fetchAdminData';
 import setAdminUserPermission from "../../store/setAdminUserPermission";
+import setInventoryPermissionfetch from "../../store/setInventoryPermission";
+import setMessagePermissionfetch from "../../store/setMessagePermission";
 import { Redirect } from 'react-router-dom';
 
 
@@ -22,6 +24,18 @@ class AdminUsers extends React.Component {
   userPermissionChange(idx) {
     return function() {
       this.props.setAdminUserPermission(idx, this.props.adminData.users[idx]._id);
+    }.bind(this);
+  }
+
+  userPInventoryChange(idx) {
+    return function() {
+      this.props.setInventoryPermissionfetch(idx, this.props.adminData.users[idx]._id);
+    }.bind(this);
+  }
+
+  userpMessageChange(idx) {
+    return function() {
+      this.props.setMessagePermissionfetch(idx, this.props.adminData.users[idx]._id);
     }.bind(this);
   }
 
@@ -47,6 +61,8 @@ class AdminUsers extends React.Component {
           <td>{val.email}</td>
           <td>{val.admin?'YES':'NO'}</td>
           <td><Switch onClick={this.userPermissionChange(index)} on={val.active}></Switch></td>
+          <td><Switch onClick={this.userPInventoryChange(index)} on={val.p_inventory}></Switch></td>
+          <td><Switch onClick={this.userpMessageChange(index)} on={val.p_message}></Switch></td>
         </tr>
       );
     }
@@ -76,6 +92,8 @@ class AdminUsers extends React.Component {
                         <th scope="col">Email</th>
                         <th scope="col">Admin</th>
                         <th scope="col">Active</th>
+                        <th scope="col">Inventory</th>
+                        <th scope="col">Message</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -107,7 +125,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchAdminData,
-  setAdminUserPermission
+  setAdminUserPermission,
+  setInventoryPermissionfetch,
+  setMessagePermissionfetch
 }, dispatch);
 
 export default connect(

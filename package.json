@@ -21,7 +21,8 @@
     "react-toggle-switch": "^3.0.4",
     "reactjs-pdf-reader": "^1.0.12",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

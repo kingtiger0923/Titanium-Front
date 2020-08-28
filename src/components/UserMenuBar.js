@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import fetchUserData from '../store/fetchUserData';
 import { Link, useHistory } from 'react-router-dom';
 
-function UserMenuBar() {
+function UserMenuBar(props) {
 
   const history = useHistory();
 
@@ -15,6 +18,10 @@ function UserMenuBar() {
   let links = location.includes('/links');
   let inventory = location.includes('/inventory');
   let messages = location.includes('/messages');
+  let unreadCount = 0;
+  if( props.success && props.userData.curUser.unreadCount !== undefined ) {
+    unreadCount = props.userData.curUser.unreadCount;
+  }
 
   return (
     <div className="user-menu">
@@ -37,10 +44,32 @@ function UserMenuBar() {
       </Link>
       <Link to="/links" className={links?"selected":""}>Links</Link>
       <Link to="/inventory" className={inventory?"selected":""}>Inventory</Link>
-      <Link to="/messages" className={messages?"selected":""}>Messages</Link>
+      <Link to="/messages" className={messages?"selected":""}>Messages
+      {
+      unreadCount !== 0 &&
+        <span class="badge badge-pill badge-primary" style={{float:'right',marginTop:'15px'}}>
+          {unreadCount >= 10 ? '9+': unreadCount}
+        </span>
+      }
+      </Link>
       <Link to="#" onClick={Logout} className="logout">Logout</Link>
     </div>
   )
 }
 
-export default UserMenuBar;
+const mapStateToProps = state => ({
+  error: state.userData.error,
+  success: state.userData.success,
+  pending: state.userData.pending,
+  userData: state.userData.data
+});
+
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchUserData
+}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserMenuBar);

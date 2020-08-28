@@ -3,9 +3,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import fetchUserData from '../store/fetchUserData';
+import socketIOClient from 'socket.io-client';
+import { fetchNewMessage } from '../store/fetchAdminData';
 import { Link } from 'react-router-dom';
 
 class PDFs extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      socket: null
+    }
+  }
   render() {
     if( this.props.success !== true ) {
       return (
@@ -19,6 +28,7 @@ class PDFs extends React.Component {
     "HR & Benefits": 0, "Branding Guidelines": 0, "Contests": 0, "Implementation": 0,
     "HelpDesk": 0, "FAQ": 0};
     for( const [index, val] of this.props.userData.pdfs.entries() ) {
+      if( index === -1 ) console.log(val); // Useless
       pdfListData[val.group] ++;
     }
 
@@ -62,6 +72,23 @@ class PDFs extends React.Component {
     if( this.props.success !== true ) {
       this.props.fetchUserData();
     }
+    let self = this;
+    let interval = setInterval(function() {
+      if( self.props.success !== true ) return;
+      clearInterval(interval);
+      if( !self.props.userData.curUser.p_message ) return ;
+      self.state.socket = socketIOClient(process.env.REACT_APP_API_URL);
+      self.state.socket.on('connect', function() {
+        self.state.socket.on( 'message', function(msg) {
+          self.props.fetchNewMessage();
+        });
+        
+      })
+    }, 500);
+  }
+  componentWillUnmount(){
+    if( this.state.socket )
+      this.state.socket.close();
   }
 }
 
@@ -74,7 +101,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchUserData
+  fetchUserData,
+  fetchNewMessage
 }, dispatch);
 
 export default connect(

@@ -1,4 +1,4 @@
-import {FETCH_ADMINDATA_PENDING, FETCH_ADMINDATA_SUCCESS, FETCH_ADMINDATA_FAILED, SET_USER_PERMISSION, REMOVE_PDF_FILE, CHANGE_INVENTORY_COUNT} from './actions';
+import {FETCH_ADMINDATA_PENDING, FETCH_ADMINDATA_SUCCESS, FETCH_ADMINDATA_FAILED, SET_USER_PERMISSION, REMOVE_PDF_FILE, CHANGE_INVENTORY_COUNT, CHANGE_INVENTORY_PERMISSION, CHANGE_MESSAGE_PERMISSION, CHANGE_INVENTORY_NAME, DELETE_INVENTORY} from './actions';
 
 export default function adminData(state = {}, action) {
   let newState = {...state};
@@ -28,6 +28,26 @@ export default function adminData(state = {}, action) {
           element.count = action.payload.val;
         }
       });
+      newState = JSON.parse(JSON.stringify(newState));
+      return newState;
+    case CHANGE_INVENTORY_NAME:
+      newState.data.inventory.forEach(element => {
+        if( element._id === action.payload.id ) {
+          element.name = action.payload.val;
+        }
+      });
+      newState = JSON.parse(JSON.stringify(newState));
+      return newState;
+    case DELETE_INVENTORY:
+      newState.data.inventory = newState.data.inventory.filter(el => el._id !== action.payload);
+      newState = JSON.parse(JSON.stringify(newState));
+      return newState;
+    case CHANGE_INVENTORY_PERMISSION:
+      newState.data.users[action.payload].p_inventory = !newState.data.users[action.payload].p_inventory;
+      newState = JSON.parse(JSON.stringify(newState));
+      return newState;
+    case CHANGE_MESSAGE_PERMISSION:
+      newState.data.users[action.payload].p_message = !newState.data.users[action.payload].p_message;
       newState = JSON.parse(JSON.stringify(newState));
       return newState;
     default:

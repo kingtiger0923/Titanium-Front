@@ -90,12 +90,10 @@
 }
 
 .user-menu a.selected {
-  color: rgb(10, 10, 10);
   background-color: #5349ae;
 }
 
 .user-menu a:hover {
-  color: rgb(10, 10, 10);
   background-color: #5349ae;
 }
 
@@ -378,8 +376,9 @@ td.btn-remove {
   font-weight: bold;
 }
 
-.inv-item img{
-  border: 2px solid #42389d;
+.inv-item img {
+  max-height: 150px;
+  margin: auto;
 }
 
 .inv-item:hover {
@@ -467,4 +466,208 @@ td.btn-remove {
   transition: all 0.6s ease-in-out;
   opacity: 1;
   display: block;
+}
+
+.message-page {
+  background-color: white;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  height: calc(100vh - 107px);
+}
+
+.adminMessage {
+  display: flex;
+  flex-direction: 1;
+  justify-content: space-between;
+}
+
+.message-page.admin {
+  height: 100vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  flex: 1;
+}
+
+.message-page .message-panel {
+  height: calc(100% - 72px);
+  background-color: #c2c2c2;
+  padding: 5px;
+}
+
+.message-page .message-panel .content {
+  min-height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
+  background-color: #fff;
+}
+
+.message-page .message-input {
+  padding: 5px 5px;
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+
+.message-page .message-input textarea {
+  resize: none;
+  color: black;
+}
+
+.message-page .message-input .input-group .input-group-prepend span {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.message-page .message-input .input-group .input-group-prepend span:hover {
+  background-color: #f4f4f7;
+}
+
+.messageItem {
+  color: black;
+  position: relative;
+}
+
+.messageItem .action-delete {
+  display: none;
+}
+
+.messageItem:hover .action-delete {
+  display: block;
+}
+
+.messageItem:nth-child(2n) {
+  background-color: #eee;
+}
+
+.messageItem .msg-cont {
+  display: flex;
+  padding: 15px 25px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.messageItem .msg-cont .avatar {
+  margin-right: 20px;
+}
+
+.messageItem .msg-cont .message-text {
+  font-size: 0.85em;
+  font-family: 'Roboto', sans-serif;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  text-align: left;
+  width: calc( 100% - 80px );
+}
+
+.messageItem .msg-cont .time {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 12px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5a95f5;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-noback {
+  background-color: transparent;
+  padding: 0!important;
+}
+
+.btn-noback:hover {
+  color: darkred;
+}
+
+.badge-primary {
+  color: white!important;
 }
