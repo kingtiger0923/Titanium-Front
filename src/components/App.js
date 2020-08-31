@@ -13,6 +13,7 @@ import UserDashboard from '../views/Dashboard';
 import AdminDashboard from '../views/admin/AdminDashboard';
 import AdminUsers from '../views/admin/AdminUsers';
 import AdminPDF from '../views/admin/AdminPDF';
+import AdminExcel from '../views/admin/AdminExcel';
 import AdminMessages from '../views/admin/AdminMessages';
 import UserMenuBar from '../components/UserMenuBar';
 import PDFs from '../views/Pdfs';
@@ -22,7 +23,9 @@ import AdminLinks from '../views/admin/AdminLinks';
 import PdfDetail from '../views/PdfDetail';
 import PdfGroup from '../views/PdfGroup';
 import Inventory from '../views/Inventory';
+import BreakRoom from '../views/BreakRoom';
 import AdminInventory from '../views/admin/AdminInventory';
+import Excel from '../views/Excel';
 
 class App extends React.Component {
   render() {
@@ -37,6 +40,8 @@ class App extends React.Component {
         <Route exact path="/links" component={UserMenuBar} />
         <Route exact path="/inventory" component={UserMenuBar} />
         <Route exact path="/messages" component={UserMenuBar} />
+        <Route exact path="/breakroom" component={UserMenuBar} />
+        <Route exact path="/excel" component={UserMenuBar} />
         <div>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={LoginPage} />
@@ -46,11 +51,14 @@ class App extends React.Component {
           <Route exact path="/pdfs/:group" render={({match}) => <PdfGroup match={match} />} />
           <Route path="/pdfs/:group/:name" render={({match}) => <PdfDetail match={match} />} />
           <Route exact path="/links" component={Links} />
+          <Route exact path="/excel" component={Excel} />
           <Route exact path="/inventory" component={Inventory} />
           <Route exact path="/messages" component={Messages} />
+          <Route exact path="/breakroom" component={BreakRoom} />
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
           <Route exact path="/admin/users" component={AdminUsers} />
           <Route exact path="/admin/pdfs" component={AdminPDF} />
+          <Route exact path="/admin/excels" component={AdminExcel} />
           <Route exact path="/admin/links" component={AdminLinks} />
           <Route exact path="/admin/inventory" component={AdminInventory} />
           <Route exact path="/admin/messages" component={AdminMessages} />

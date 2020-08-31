@@ -16,8 +16,10 @@ function UserMenuBar(props) {
   let location = window.location.href;
   let pdf = location.includes('/pdfs');
   let links = location.includes('/links');
+  let excel = location.includes('/excel');
   let inventory = location.includes('/inventory');
   let messages = location.includes('/messages');
+  let breakroom = location.includes('/breakroom');
   let unreadCount = 0;
   if( props.success && props.userData.curUser.unreadCount !== undefined ) {
     unreadCount = props.userData.curUser.unreadCount;
@@ -42,8 +44,10 @@ function UserMenuBar(props) {
           </div>
         </div>
       </Link>
+      <Link to="/excel" className={excel?"selected":""}>Excel</Link>
       <Link to="/links" className={links?"selected":""}>Links</Link>
       <Link to="/inventory" className={inventory?"selected":""}>Inventory</Link>
+      <Link to="/breakroom" className={breakroom?"selected":""}>Break Room</Link>
       <Link to="/messages" className={messages?"selected":""}>Messages
       {
       unreadCount !== 0 &&

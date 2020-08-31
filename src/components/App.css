@@ -671,3 +671,34 @@ td.btn-remove {
 .badge-primary {
   color: white!important;
 }
+
+.padlet-embed {
+  border:1px solid rgba(0,0,0,0.1);
+  border-radius:2px;
+  box-sizing:border-box;
+  overflow:hidden;
+  position:relative;
+  width:100%;
+  background:#F4F4F4;
+}
+
+.padlet-embed iframe {
+  padding:0;
+  margin:0;
+  background:none;
+  border:none;
+  display:inline;
+  box-shadow:none;
+  width: 100%;
+  min-height: calc(100vh - 300px);
+}
+
+.Spreadsheet {
+  width: 100%;
+  max-height: 80vh;
+  overflow: scroll!important;
+}
+
+.sheetBtn {
+  padding: 5px 10px;
+}
